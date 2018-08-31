@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+ACCOUNT_ACTIVATION_DAYS = 7
 
 INSTALLED_APPS = [
     'ToyShop',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     os.path.join('ToyShop', "static"),
 ]
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'testing@example.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_PORT = 1025
+
+
+LOGIN_REDIRECT_URL = "home"

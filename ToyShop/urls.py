@@ -19,6 +19,8 @@ from LogicApp import views as LogicAppViews
 from LogicApp import urls as LogicAppUrls
 
 urlpatterns = [
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^admin/', admin.site.urls),
     url(r'^$', LogicAppViews.index, name='home'),
     url(r'^about/', include(LogicAppUrls)),
     url(r'^admin/', admin.site.urls),
