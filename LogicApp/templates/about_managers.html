@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    About Managers - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>About managers page</h1>
+    <p>About managers content.</p>
+    <header>
+          <h1>Navigation:</h1>
+          <nav>
+              <ul>
+                  <li>
+                      <a href="{% url 'home' %}">Home</a>
+                  </li>
+              </ul>
+          </nav>
+      </header>
+{% endblock content %}

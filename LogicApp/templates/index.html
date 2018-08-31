@@ -1,12 +1,23 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>ToyShop main pages</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-        <p>I am a basic website.</p>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% block title %}
+    Homepage - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>You are visit ToyShop Site</h1>
+    <p>What you wont?</p>
+    <p>Maybe you need help</p>
+    <header>
+          <h1>Navigation:</h1>
+          <nav>
+              <ul>
+                  <li>
+                      <a href="{% url 'logic_about_clients' %}">Clients</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'logic_about_managers' %}">Managers</a>
+                  </li>
+              </ul>
+          </nav>
+      </header>
+{% endblock content %}

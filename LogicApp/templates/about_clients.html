@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    About Clients - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>About clients page</h1>
+    <p>About clients content.</p>
+    <header>
+          <h1>Navigation:</h1>
+          <nav>
+              <ul>
+                  <li>
+                      <a href="{% url 'home' %}">Home</a>
+                  </li>
+              </ul>
+          </nav>
+      </header>
+{% endblock content %}
