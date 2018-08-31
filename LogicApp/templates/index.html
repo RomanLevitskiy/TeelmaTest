@@ -20,4 +20,10 @@
               </ul>
           </nav>
       </header>
+
+    {% for client in clients %}
+      <h2>{{ client.nic_name }}</h2>
+      <p>{{ client.description }}</p>
+    {% endfor %}
+    
 {% endblock content %}

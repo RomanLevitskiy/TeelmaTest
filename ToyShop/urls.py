@@ -17,11 +17,16 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from LogicApp import views as LogicAppViews
 from LogicApp import urls as LogicAppUrls
+from Client import urls as ClientUrls
+from Client import views as ClientViews
+from LogicApp.backends import MyRegistrationView
 
 urlpatterns = [
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
+    url(r'^accounts/create_client/$', ClientViews.create_client, name='registration_create_client'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^admin/', admin.site.urls),
     url(r'^$', LogicAppViews.index, name='home'),
     url(r'^about/', include(LogicAppUrls)),
+    url(r'^clients/', include(ClientUrls)),
     url(r'^admin/', admin.site.urls),
 ]
