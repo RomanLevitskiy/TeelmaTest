@@ -25,23 +25,36 @@ SECRET_KEY = 'd_2u_u^im&sb*6kze9u7f@+h4t##(+7i7@_2v445$a30bahki%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 
 # Application definition
-ACCOUNT_ACTIVATION_DAYS = 7
+#ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+#REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
 INSTALLED_APPS = [
     'ToyShop',
     'LogicApp',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.sites',
+    'registration',
+    'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
+    'Client',
 ]
+
+
+ALLOWED_HOSTS = ['*']
+
+SECRET_KEY = '_'
+
+SITE_ID = 1
+"""
+ROOT_URLCONF = 'LogicApp.urls_default'
+"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,13 +143,30 @@ STATICFILES_DIRS = [
 ]
 
 
-
+"""
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'testing@example.com'
+DEFAULT_FROM_EMAIL = 'testing@example.com'#'armgcppgcc@gmail.com'
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
+REGISTRATION_OPEN = True
+SIMPLE_BACKEND_REDIRECT_URL = "home"
+"""
+"""
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_EMAIL_SUBJECT_PREFIX = '[Django Registration Test App]'
+SEND_ACTIVATION_EMAIL = True
+REGISTRATION_AUTO_LOGIN = False
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL = "home"
+"""
+
+REGISTRATION_OPEN  =  True                 # Если True, пользователи могут зарегистрировать
+ACCOUNT_ACTIVATION_DAYS  =  7      # Однонедельное окно активации; вы, конечно, можете использовать другое значение.
+REGISTRATION_AUTO_LOGIN  =  True   # Если True, пользователь будет автоматически войти в систему.
+LOGIN_REDIRECT_URL  =  "home"   # Страница, которую вы хотите, чтобы пользователи пришли после успешного входа в систему
+LOGIN_URL  =  '/accounts/login/'   # Пользователи страницы если они не вошли в систему,
+                                                                # и пытаются получить доступ к страницам, требующим аутентификации
