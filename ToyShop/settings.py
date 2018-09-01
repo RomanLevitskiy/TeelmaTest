@@ -70,10 +70,11 @@ ROOT_URLCONF = 'ToyShop.urls'
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 TEMPLATE_LOGIC_APP_DIR = 'LogicApp/templates'
+TEMPLATE_CLIENT_APP_DIR = 'Client/templates'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,TEMPLATE_LOGIC_APP_DIR,],
+        'DIRS': [TEMPLATE_DIR,TEMPLATE_LOGIC_APP_DIR, TEMPLATE_CLIENT_APP_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
