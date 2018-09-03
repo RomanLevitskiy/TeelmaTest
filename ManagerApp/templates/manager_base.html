@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ ManagerApp.user.name }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ ManagerApp.user.name }}</h1>
+    <p>{{ ManagerApp.description }}</p>
+    <a href="{% url 'manager_create' %}">Create new manager</a>
+
+    {%comment%}
+    {% if user == Client.user %}
+        <p>
+            <a href="{% url 'edit_client' nic_name=Client.nic_name %}">
+                Edit me!
+            </a>
+        </p>
+    {% endif %}
+    {%endcomment%}
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ ManagerApp.user.name }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ ManagerApp.user.name }}</h1>
+    <p>{{ ManagerApp.description }}</p>
+    <a href="{% url 'manager_base' %}">Go back</a>
+
+        <h1>Create new manager</h1>
+        <form role="form" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+
+{% endblock content %}

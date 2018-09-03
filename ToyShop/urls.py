@@ -20,8 +20,10 @@ from LogicApp import urls as LogicAppUrls
 from Client.backends import MyRegistrationView
 from Client import views as ClientViews
 from Client import forms as ClientForms
+from ManagerApp import urls as ManagerAppUrls
 
 urlpatterns = [
+    url(r'^manager/', include(ManagerAppUrls)),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/create_client/$', ClientViews.create_client, name='registration_create_client'),
     #url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_create_client'),

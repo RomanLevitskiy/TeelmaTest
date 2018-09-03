@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ Client.user.name }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ Client.user.name }}</h1>
+    <p>{{ Client.description }}</p>
+    {% if user == Client.user %}
+        <p>
+            <a href="{% url 'edit_client' nic_name=Client.nic_name %}">
+                Edit me!
+            </a>
+        </p>
+    {% endif %}
+{% endblock content %}
