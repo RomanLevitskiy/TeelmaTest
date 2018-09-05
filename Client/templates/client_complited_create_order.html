@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ Client.user.name }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ Client.user.name }}</h1>
+    <p><h1><b></b>Order creation completed</b></h1></p>
+    <a href="{% url 'client_base' %}">Go back</a>
+    <p>
+      {{order_dict.subject}}
+      {{order_dict.body}}
+      {{order_dict.price}}
+    </p>
+{% endblock content %}

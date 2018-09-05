@@ -21,9 +21,11 @@ from Client.backends import MyRegistrationView
 from Client import views as ClientViews
 from Client import forms as ClientForms
 from ManagerApp import urls as ManagerAppUrls
+from Client import urls as ClientAppUrls
 
 urlpatterns = [
     url(r'^manager/', include(ManagerAppUrls)),
+    url(r'^client/', include(ClientAppUrls)),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
     url(r'^accounts/create_client/$', ClientViews.create_client, name='registration_create_client'),
     #url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_create_client'),
