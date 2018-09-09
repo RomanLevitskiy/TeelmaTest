@@ -8,14 +8,20 @@
     <p>{{ Client.description }}</p>
     <a href="{% url 'client_create_order' %}">Create new order</a>
 
-    {%comment%}
-    {% if user == Client.user %}
-        <p>
-            <a href="{% url 'edit_client' nic_name=Client.nic_name %}">
-                Edit me!
-            </a>
-        </p>
+    {% if client_orders.count > 0 %}
+    <h2>Orders list</h2>
+    <table>
+        <thead><th>Id</th><th>Subject</th><th>Body</th><th>Time last modify</th></thead>
+        {% for order in client_orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.subject }}</td>
+            <td>{{ order.body }}</td>
+            <td>{{ order.last_changes}}</td>
+            <td><a href="{% url 'cleint_edit_order' order.id %}">Modify</a> | <a href="{% url 'cleint_delete_order' order.id %}/">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
     {% endif %}
-    {%endcomment%}
 
 {% endblock content %}

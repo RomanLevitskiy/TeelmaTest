@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    Client edit order - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ Client.user.name }}</h1>
+    <div>
+      <a href="{% url 'client_base' %}">Go back to client home page</a>
+    </div>
+
+    <h1>Client edit order</h1>
+    <form role="form" action="" method="post">
+        {% csrf_token %}
+        <p>
+            <label>Edit subject:</label><br>
+            <input type="text" name="subject" value="{{edit_order.subject}}" />
+        </p>
+        <p>
+            <label>Edit body:</label><br>
+            <input type="text" name="body" value="{{edit_order.body}}" />
+        </p>
+        <p>
+            <label>Edit price:</label><br>
+            <input type="number" name="price" value="{{edit_order.price}}" />
+        </p>
+        {{ form.as_p }}
+        <input type="submit" value="Save edit" />
+    </form>
+{% endblock content%}

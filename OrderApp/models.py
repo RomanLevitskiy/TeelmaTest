@@ -13,3 +13,6 @@ class Order(models.Model):
 
     def __str__(self):
         return self.subject + "  " + self.last_changes.strftime("%Y-%m-%d %H:%M:%S")
+
+    class Meta:
+        ordering = ('subject',)

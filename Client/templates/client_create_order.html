@@ -4,6 +4,11 @@
 {% endblock title %}
 
 {% block content %}
+    <h1>{{ Client.user.name }}</h1>
+    <div>
+      <a href="{% url 'client_base' %}">Go back to client home page</a>
+    </div>
+
     <h1>Client create order</h1>
     <form role="form" action="" method="post">
         {% csrf_token %}
