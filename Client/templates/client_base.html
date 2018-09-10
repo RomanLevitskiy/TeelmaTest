@@ -18,7 +18,7 @@
             <td>{{ order.subject }}</td>
             <td>{{ order.body }}</td>
             <td>{{ order.last_changes}}</td>
-            <td><a href="{% url 'cleint_edit_order' order.id %}">Modify</a> | <a href="{% url 'cleint_delete_order' order.id %}/">Delete</a></td>
+            <td><a href="{% url 'cleint_edit_order' id=order.id %}">Modify</a> | <a href="{% url 'cleint_delete_order' id=order.id %}/">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

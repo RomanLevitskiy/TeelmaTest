@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
 from django.contrib.auth.models import User
 from .models import Client
@@ -77,30 +77,19 @@ def client_complited_create_order(request):
 
 @login_required(login_url='/accounts/register/')
 def edit_order(request, id):
-    try:
-        edit_order = Order.objects.filter(id_exact=id)
-    except Poll.DoesNotExist:
-        raise Http404("Order does not exist")
-
-    form_client_order = ClientOrderForm
-    if request.method == 'POST':
-        form = form_client_order(request.POST)
+    order = get_object_or_404(Order, id=id)
+    if request.method == "POST":
+        form = ClientOrderForm(request.POST, instance=order)
         if form.is_valid():
+            edit_order = form.save(commit=False)
             edit_order.subject = request.POST['subject']
             edit_order.body = request.POST['body']
             edit_order.price = request.POST['price']
             edit_order.save()
             return redirect('client_base')
-        else:
-            raise Http404("You maked mistake")
     else:
-        form = form_client_order()
-
-    return render(request, 'client_create_order.html', {
-        'form': form, 'edit_order':edit_order
-    })
-
-
+        form = ClientOrderForm(instance=order)
+    return render(request, 'client_create_order.html', {'form': form})
 
 @login_required(login_url='/accounts/register/')
 def delete_order(request, id):
