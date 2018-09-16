@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    Manager edit order - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ Manager.user.name }}</h1>
+    <div>
+      <a href="{% url 'manager_base' %}">Go back to manager home page</a>
+    </div>
+
+    <h1>Manager edit order</h1>
+    <form role="form" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock content%}

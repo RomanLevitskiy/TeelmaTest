@@ -8,14 +8,21 @@
     <p>{{ ManagerApp.description }}</p>
     <a href="{% url 'manager_create' %}">Create new manager</a>
 
-    {%comment%}
-    {% if user == Client.user %}
-        <p>
-            <a href="{% url 'edit_client' nic_name=Client.nic_name %}">
-                Edit me!
-            </a>
-        </p>
+    {% if all_orders.count > 0 %}
+    <h2>Orders list</h2>
+    <table>
+        <thead><th>Id</th><th>Subject</th><th>Body</th><th>Time last modify</th></thead>
+        {% for order in all_orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.subject }}</td>
+            <td>{{ order.body }}</td>
+            <td>{{ order.last_changes}}</td>
+            <td><a href="{% url 'manager_edit_order' id=order.id %}">Modify</a> |
+                <a href="{% url 'manager_add_client_in_order' id=order.id %}">Add Client in order</a></td>
+        </tr>
+        {% endfor %}
+    </table>
     {% endif %}
-    {%endcomment%}
 
 {% endblock content %}

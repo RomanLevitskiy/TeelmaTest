@@ -7,4 +7,6 @@ urlpatterns = [
     url(r'^home/$', views.manager_base, name="manager_base"),
     url(r'^create/$', views.create_manager, name="manager_create"),
     url(r'^create_manager_comlete/$', views.create_manager_comlete, name="create_manager_comlete"),
+    url(r'^edit_order/(?P<id>\d+)/$', views.edit_order, name="manager_edit_order"),
+    url(r'^add_client_in_order/(?P<id>\d+)/$', views.add_client_in_order, name="manager_add_client_in_order"),
 ]

@@ -90,7 +90,7 @@ def edit_order(request, id):
     else:
         form = ClientOrderForm(instance=order)
     return render(request, 'client_create_order.html', {'form': form})
-
+"""
 @login_required(login_url='/accounts/register/')
 def delete_order(request, id):
     try:
@@ -99,3 +99,4 @@ def delete_order(request, id):
         return redirect('client_base')
     except Poll.DoesNotExist:
         raise Http404("Order does not exist")
+"""

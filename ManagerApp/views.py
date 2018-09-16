@@ -1,13 +1,16 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 from ManagerApp.forms import ManagerForm
 from django.contrib.auth.models import User
+from OrderApp.forms import ManagerOrderForm, ManagerAddClientInOrderForm
 from ManagerApp.models import Manager
+from OrderApp.models import Order
 
 @login_required(login_url='/accounts/register/')
 def manager_base(request):
-    return render(request, 'manager_base.html')
+    all_orders = Order.objects.all().order_by('date_create')
+    return render(request, 'manager_base.html', {'all_orders': all_orders})
 
 @login_required(login_url='/accounts/register/')
 def create_manager(request):
@@ -41,3 +44,36 @@ def create_manager(request):
 
 def create_manager_comlete(request):
     return render(request, 'create_manager_comlete.html')
+
+
+
+@login_required(login_url='/accounts/register/')
+def edit_order(request, id):
+    order = get_object_or_404(Order, id=id)
+    if request.method == "POST":
+        form = ManagerOrderForm(request.POST, instance=order)
+        if form.is_valid():
+            edit_order = form.save(commit=False)
+            edit_order.subject = request.POST['subject']
+            edit_order.body = request.POST['body']
+            edit_order.price = request.POST['price']
+            edit_order.save()
+            return redirect('manager_base')
+    else:
+        form = ManagerOrderForm(instance=order)
+    return render(request, 'manager_edit_order.html', {'form': form})
+
+
+@login_required(login_url='/accounts/register')
+def add_client_in_order(request, id):
+    order = get_object_or_404(Order, id=id)
+    if request.method == "POST":
+        form = ManagerAddClientInOrderForm(request.POST, instance=order)
+        if form.is_valid():
+            edit_order = form.save(commit=False)
+            edit_order.customers.add(request.POST['customers'])
+            edit_order.save()
+            return redirect('manager_base')
+    else:
+        form = ManagerAddClientInOrderForm(instance=order)
+    return render(request, 'manager_add_client_in_order.html', {'form': form})
