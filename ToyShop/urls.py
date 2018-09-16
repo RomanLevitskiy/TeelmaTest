@@ -34,4 +34,5 @@ urlpatterns = [
     url(r'^$', LogicAppViews.index, name='home'),
     url(r'^about/', include(LogicAppUrls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^sorted_input_user/', LogicAppViews.sorted_input_user, name='sorted_input_user'),
 ]
